@@ -3,7 +3,7 @@
 function createInput(length){
   let input = [];
   for(let i = 0; i < length; i ++){
-    input.push(-500 + i);
+    input.push(-100+i);
   }
   
   return input;
