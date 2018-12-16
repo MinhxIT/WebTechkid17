@@ -73,6 +73,16 @@
         <input type="color" name="" id="">
         <input type="date" name="" id="">
     </form>
+    <textarea name="" id="content" cols="30" rows="10" maxlength="200"></textarea>
+    <div>Còn <span id="count">200</span>/200 ký tự</div>
+    <script>
+        var content = document.getElementById("content").addEventListener("input",function(){
+            var check = document.getElementById("count").innerText = 200 - document.getElementById("content").value.length;
+            if(check<=0){
+                document.getElementById("content").value.slice(0,199);
+            }
+        });
+    </script>
     <script src="main.js"></script>
     <a href="http://google.com" target="_blank">Google</a>
     <a href="#top">Go to top</a>

@@ -13,6 +13,7 @@ body{
 
 nav.menu.sub-menu {
     display: none;
+    position: relative;
 }
 
 .menu span {
@@ -28,12 +29,23 @@ nav.menu.sub-menu {
     cursor: pointer;
 
 }
+.menu span .menu.sub-menu span .menu.sub-menu{
+    display: none;  
+}
+.menu span .menu.sub-menu span .menu.sub-menu span .menu.sub-menu{
+    display: none;
+}
+.menu span .menu.sub-menu span .menu.sub-menu span .menu.sub-menu:hover .menu.sub-menu{
+    position: absolute;
+    display: inline-block;
+    float: right;
+}
+.menu span .menu.sub-menu span:hover .menu.sub-menu{
+    position: absolute;
+    display: inline-block;
+    float: right;  
+}
 .menu span:hover .sub-menu{
     display:inline-block;
     float:left;
 }
-.menu.sub-menu:hover .sub-menu{
-    display:inline;
-    float: left;
-}
-/* ------------- */
