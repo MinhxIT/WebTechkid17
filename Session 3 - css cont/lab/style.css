@@ -2,50 +2,39 @@ body{
     margin: 0;
     padding: 0;
 }
-.menu{
-    width: 100%;
+nav.menu{
     background-color: #D5B0AC;
     color: #402E2A;
     font-weight: bold;
-    /* margin: auto; */
     text-align: center;
 }
 
-nav.menu.sub-menu {
-    display: none;
-    position: relative;
-}
-
-.menu span {
+nav.menu span {
     width: 100px;
     height: 30px;
     display: inline-block;
     line-height: 30px;
-    /* margin: auto; */
 }
-.menu span:hover{
+nav.menu span:hover{
     color: #FFFFFF;
     background-color: #9CD08F;
     cursor: pointer;
-
 }
-.menu span .menu.sub-menu span .menu.sub-menu{
-    display: none;  
-}
-.menu span .menu.sub-menu span .menu.sub-menu span .menu.sub-menu{
+.sub-menu{
     display: none;
+    position:absolute;
 }
-.menu span .menu.sub-menu span .menu.sub-menu span .menu.sub-menu:hover .menu.sub-menu{
-    position: absolute;
-    display: inline-block;
-    float: right;
+nav.sub-menu span{
+    display: block;
 }
-.menu span .menu.sub-menu span:hover .menu.sub-menu{
-    position: absolute;
-    display: inline-block;
-    float: right;  
+nav.menu span:hover>.sub-menu{
+    display: block;
 }
-.menu span:hover .sub-menu{
-    display:inline-block;
-    float:left;
+.sub-menu.sub-menu span{
+    display: block;
+    position: relative;
+}
+.sub-menu .sub-menu{
+    left: 100px;
+    top: 0;
 }
