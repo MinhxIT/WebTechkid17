@@ -1,0 +1,100 @@
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    color: #4AB19A;
+}
+
+a.footer-link {
+    padding: 0 20px;
+    color: #4AB19A;
+    text-decoration: none;
+    font-size: 1.35em;
+}
+
+.bottom-container {
+    background-color: #e0ebe8;
+    /* height: 160px; */
+    padding: 40px 0;
+}
+
+.contact-me {
+    width: 600px;
+    margin: 60px auto;
+}
+
+.profile {
+    width: 400px;
+    margin: auto;
+}
+
+.middle-container {
+    padding: 80px;
+}
+.top-container{
+    background-color: #E0EBE8;
+    position: relative;
+    padding-top: 180px;
+}
+h1.name{
+    margin: 0 auto;
+    font-family: 'Indie Flower', cursive;
+    font-size: 5em;
+    width: 50%;
+    
+}
+p.job{
+    font-size: 2em;
+    padding-bottom: 100px;  
+}
+.cloud-left{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+}
+hr{
+    width: 10%;
+    border-top: 10px dotted #d1dcdc;
+    margin: 70px auto;
+}
+.cloud-right{
+    position: absolute; 
+    top:40%;
+    left: 80%;
+}
+img.avatar{
+    width: 180px;
+    border-radius: 50%;
+}
+.skill-row {
+    width: 800px;
+    margin: 40px auto;
+    display: flex;
+
+}
+.img-skill{
+    width: 280px;
+    height: 280px;
+    margin-right: 80px;
+}
+.detail{
+    color: black;
+}
+.detail-skill{
+    width: 440px;
+}
+.btn{
+
+border: 1px solid #4AB19A;
+padding: 10px 20px;
+border-radius: 10px;
+color: white;
+background-color: #4AB19A;
+
+text-decoration: none;
+
+display: inline-block;
+
+margin: 26px 0;
+}
