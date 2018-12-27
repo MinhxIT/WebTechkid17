@@ -11,7 +11,7 @@
   </head>
   <body>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <a class="navbar-brand" href="./ask">Home</a>
+            <a class="navbar-brand" href="/ask">Home</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="./answer">Answers <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/answer">Answers <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Vote</a>
@@ -28,11 +28,9 @@
             </div>
         </nav>
         <div class="container">
-            <h1 id="contentQues">Nội dung câu hỏi</h1>
-            <button id="yes" class="btn btn-success btn-answer" data-questionId="" role="button">Đúng</button>
-            <button id="no" class="btn btn-danger btn-answer" data-questionId="" role="button">Sai</button>
-            <a href="/answer" class="btn btn-primary">Câu hỏi khác</a>
-            <button class="btn btn-warning btn-result" data-questionId="" role="button">Kết quả vote</button>
+            <h1 id="contentQues" data-question="">Nội dung câu hỏi</h1>
+            Yes:<p id="yesVote"></p>
+            No: <p id="noVote"></p>
         </div>
         
     <!-- Optional JavaScript -->

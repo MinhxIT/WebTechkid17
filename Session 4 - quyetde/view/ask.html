@@ -28,8 +28,11 @@
       </div>
     </nav>
       <div class="container">
+        <div class="jumbotron">
+          <h1 class="display-3">Hỏi ở đây nè</h1>
+        </div>
             <form action="/addQuestion" method="POST">
-                <label for="">Nhap noi dung cau hoi</label>
+                <label for="">Nhập nội dung câu hỏi</label>
                 <textarea class="form-control" name="questionContent" id="content" rows="3" required maxlength="200"></textarea>
                 <div>Còn <span id="count">200</span>/200 ký tự</div>
                 <button type="submit" class="btn btn-primary">Gửi</button>
