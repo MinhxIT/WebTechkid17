@@ -9,11 +9,11 @@ $(document).ready(function () {
         type: "GET",
         url: "/api/random",
         success: function (data) {
+            //alert(data.length)
+
             $("#contentQues").text(data.question.content);
-            $("#yesVote").text(data.question.yes);
-            $("#noVote").text(data.question.no);
-            $(".btn-answer").attr("data-questionId",data.question.id);
-            $(".btn-result").attr("data-questionId",data.question.id);
+            $(".btn-answer").attr("data-questionId",data.question._id);
+            $(".btn-result").attr("data-questionId",data.question._id);
         },
         error:function(err){
             console.log(err);
@@ -27,7 +27,7 @@ $(document).ready(function () {
             type: "GET",
             url: "/vote/"+questionId+"/" + questionVote,
             success: function (data) {
-                window.location.href = "/answer";
+                window.location.href = "/question/"+questionId;
             },
             error:function(err){
                 console.log(err);
@@ -35,14 +35,12 @@ $(document).ready(function () {
         });
     });
     $(".btn-result").click(function () { 
-        const questionId = $(".btn-result").attr("data-questionId");       
+        const questionId = $(".btn-result").attr("data-questionId");
         $.ajax({
             type: "GET",
             url: "/question/"+questionId,
-            success: function (data) {
-                alert("Nội dung câu hỏi: " + data.question.content + "      Yes: " + data.question.yes + "       No:" +data.question.no);
-                
-                window.location.href = "/result/"+questionId;
+            success: function (data) {                
+                window.location.href = "/question/"+questionId;
             },
             error:function(err){
                 console.log(err);
