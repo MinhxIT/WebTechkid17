@@ -46,7 +46,6 @@ app.get("/api/random",(req,res)=>{
         if (err) return handleError(err);
         else{
             const randomQuestion = questions[Math.floor(Math.random()*questions.length)];
-            console.log(randomQuestion);
             res.send({question:randomQuestion});
         } 
     });
@@ -103,7 +102,6 @@ app.get("/api/question/:questionId",(req,res)=>{
         else{
             let questionFound;
             questionFound = question[0];
-            console.log(question);
             res.send({question:questionFound});
             //console.log(question.content);
         } 
