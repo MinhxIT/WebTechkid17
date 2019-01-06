@@ -69,26 +69,24 @@ app.get("/vote/:questionId/:vote",(req,res)=>{
     const questionId = req.params.questionId; // id ở trên đường dẫn
     const vote = req.params.vote;
     // let questions = JSON.parse(fs.readFileSync("./questionAsk.json"),{encoding:"utf-8"});
-
-    if(vote=="yes"){
         QuestionModel.findById(questionId, function (err, question) {
-            if (err) return handleError(err);
-            
-            question.set({yes: question.yes+=1 });
-            question.save();
-            });
-    }
-    else{
-        QuestionModel.findById(questionId, function (err, question) {
-            if (err) return handleError(err);
-            
-            question.set({no: question.no+=1 });
-            question.save();
-            });
-    }
+            if (err){
+                return handleError(err);
+            }
+            else if(!question || !question._id){
+                res.status(404).send({message:"Question not found"});               
+            }
+            else{
+                question[vote]+=1;
+                question.save();
+                res.send({message:"Success"});
+            }
+        });
     //res.redirect("/answer");
 });
-
+app.get("/",function(req,res){
+    res.sendFile(__dirname + "/view/ask.html");
+})
 app.get("/ask",(req,res)=>{
     res.sendFile(__dirname + "/view/ask.html");
 }); // đến trang ask 
@@ -97,13 +95,15 @@ app.get("/question/:questionId",(req,res)=>{
 });
 app.get("/api/question/:questionId",(req,res)=>{
     const questionId = req.params.questionId; // id ở trên đường dẫn
-    QuestionModel.find({_id : questionId }, function (err, question) {
-        if (err) return handleError(err);
-        else{
+    QuestionModel.findOne({_id : questionId }, function (err, question) {
+        if (err) {
+            return handleError(err);
+        }else if(!question || !question._id){
+            res.status(404).send({message:"Question not found"});               
+        }else{
             let questionFound;
-            questionFound = question[0];
+            questionFound = question;
             res.send({question:questionFound});
-            //console.log(question.content);
         } 
     });
 })
