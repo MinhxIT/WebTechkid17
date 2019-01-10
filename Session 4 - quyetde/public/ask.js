@@ -10,7 +10,6 @@ $(document).ready(function () {
         url: "/api/random",
         success: function (data) {
             //alert(data.length)
-
             $("#contentQues").text(data.question.content);
             $(".btn-answer").attr("data-questionId",data.question._id);
             $(".btn-result").attr("data-questionId",data.question._id);
