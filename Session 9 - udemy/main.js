@@ -15,7 +15,7 @@ $(document).ready(function () {
                                 <h4 class="card-title title">${data.results[i].title}</h4>
                                 <p class="card-text description">${data.results[i].visible_instructors[0].job_title}</p>
                                 <p>Price: ${data.results[i].visible_instructors[0].job_title}</p>
-                                <a href="${"https://www.udemy.com"+data.results[i].url}" class="btn btn-primary">Go to course</a>
+                                <a target="_blank" href="${"https://www.udemy.com"+data.results[i].url}" class="btn btn-primary">Go to course</a>
                             </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@ $(document).ready(function () {
     }
     let nextPage = 2;
     $('.lds-pacman').hide();
-    $("#udemy-form").on('submit', function () {
+    $("#udemy-form").on('submit', function (event) {
         event.preventDefault();
         $('.lds-pacman').show();
         $(".info").empty();
