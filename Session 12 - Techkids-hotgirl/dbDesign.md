@@ -1,0 +1,13 @@
+ - Uses:
+    - Username
+    - Password
+    - Avatar
+ - Posts:
+    - Picture
+    - Desciption
+    - Like
+    - Title
+    - Comment
+    - Views
+    - Date
+    - Auther
