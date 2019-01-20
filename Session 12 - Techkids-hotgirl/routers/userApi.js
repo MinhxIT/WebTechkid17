@@ -8,7 +8,8 @@ UserApi.use((req,res,next)=>{
 // read all user
 UserApi.get('/',(req,res)=>{
     const {page=1,per_page=5} = req.query;
-    UserModel.find({}).select({
+    UserModel.find({})
+    .select({
         password:0,
         __v:0
     })

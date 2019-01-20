@@ -12,11 +12,12 @@ mongoose.connect('mongodb://localhost:27017/scorekeeper', {useNewUrlParser: true
 });
 app.use(express.static(__dirname+'/public'));// middleware: express.static: thư mục muốn cho là static
 app.use(bodyParser.urlencoded({extended:false}));
-
+// display create game
 app.get("/game",function(req,res){
     res.sendFile(__dirname + "/views/CreateScreen.html");
 });
-app.post("/game",function(req,res){
+// post data on db 
+app.post("/game",(req,res)=>{
     const name1 = req.body.player1;
     const name2 = req.body.player2;
     const name3 = req.body.player3;
@@ -28,33 +29,32 @@ app.post("/game",function(req,res){
         player4 : {name:name4,score:[]}
     }
     
-    ScoreModel.create(newPlayers, function (err, playerCreated) {
+    ScoreModel.create(newPlayers, (err, playerCreated)=> {
         if (err) return handleError(err);
         else{  
-            res.redirect("/game");
+            res.redirect("/game/"+playerCreated._id);
         } 
     });
 });
-app.get("/api/playerName",(req,res)=>{
-    // mongo
-    var id = req.params.id;
-    ScoreModel.findOne({}, {}, { sort: { 'createdAt' : -1 } }, function(err, player) {
-        res.send({player:player});
-    });
+// hien thi man hinh game
+app.get("/game/:idPlayer",(req,res)=>{
+    res.sendFile(__dirname+"/views/PlayScreen.html");
 });
-
-app.get("/game/:id",function(req,res){
-    var id = req.params.id;
-    ScoreModel.findById(id, function (err, score) {
+// api lay du lieu tu id 
+app.get("/api/game/:idPlayer",(req,res)=>{
+    var idPlayer = req.params.idPlayer;
+    ScoreModel.findById(idPlayer, function (err, playersData) {
         if (err) return handleError(err);
         else{    
-            res.sendFile(__dirname + "/views/PlayScreen.html");
+            res.send({playersData:playersData})
         } 
     });
 });
-app.get("/game",function(req,res){
-    res.sendFile(__dirname + "/views/PlayScreen.html");
-});
+// 
+app.post("/api/game/:idPlayer",(req,res)=>{
+    const idPlayer = req.params.idPlayer;
+    
+})
 app.listen(8080,function(err){
     if(err){
         console.log("Lỗi");

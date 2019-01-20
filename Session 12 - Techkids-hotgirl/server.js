@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const UserApi = require('./routers/userApi');
-
+const PostApi = require('./routers/postApi');
 const app = express();
 // connect db 
 mongoose.connect('mongodb://localhost:27017/tkhotgirl', {useNewUrlParser: true},(err)=>{
@@ -16,6 +16,7 @@ mongoose.connect('mongodb://localhost:27017/tkhotgirl', {useNewUrlParser: true},
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use('/api/user',UserApi);
+app.use('/api/post',PostApi);
 
 
 
