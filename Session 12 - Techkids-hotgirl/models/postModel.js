@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); 
 const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
-    author:String,
+    author:{type: Schema.Types.ObjectId,ref:'user'},
     content:String
 },{
     _id:false
@@ -13,7 +13,7 @@ const PostSchema = new Schema({
     title:{type:String,required:true},
     comments:[CommentSchema],
     view:{type:Number,default:0},
-    author: String
+    author: {type: Schema.Types.ObjectId,ref:'user'}
 },{
     timestamps:true // createAt 
 });

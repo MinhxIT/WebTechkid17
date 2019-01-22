@@ -51,8 +51,60 @@ app.get("/api/game/:idPlayer",(req,res)=>{
     });
 });
 // 
-app.post("/api/game/:idPlayer",(req,res)=>{
-    const idPlayer = req.params.idPlayer;
+app.post("/api/game/:gameId",(req,res)=>{
+    const gameId = req.params.gameId;
+	arrItem = req.body.id.split("r");
+	newScore = req.body.score;
+	gameModel.findById(gameId, function (err, gameCreated) {
+		if (err) console.log(err);
+		else {
+			
+			switch(arrItem[0]){
+				case "1":
+				{
+					var arrScore;
+					arrScore = gameCreated.player1.score;
+					arrScore[arrItem[1]-1] = parseInt(newScore);
+					gameModel.findByIdAndUpdate(gameId, { player1  : { name: gameCreated.player1.name, score: arrScore } }, function (err, game) {
+						if (err) console.log(err);
+					});
+					break;
+				}
+				case "2":
+				{
+					var arrScore;
+					arrScore = gameCreated.player2.score;
+					arrScore[arrItem[1]-1] = parseInt(newScore);
+					gameModel.findByIdAndUpdate(gameId, { player2  : { name: gameCreated.player2.name, score: arrScore } }, function (err, game) {
+						if (err) console.log(err);
+					});
+					break;
+				}
+				case "3":
+				{
+					var arrScore;
+					arrScore = gameCreated.player3.score;
+					arrScore[arrItem[1]-1] = parseInt(newScore);
+					gameModel.findByIdAndUpdate(gameId, { player3  : { name: gameCreated.player3.name, score: arrScore } }, function (err, game) {
+						if (err) console.log(err);
+					});
+					break;
+				}
+				case "4":
+				{
+					var arrScore;
+					arrScore = gameCreated.player4.score;
+					arrScore[arrItem[1]-1] = parseInt(newScore);
+					gameModel.findByIdAndUpdate(gameId, { player4  : { name: gameCreated.player4.name, score: arrScore } }, function (err, game) {
+						if (err) console.log(err);
+					});
+					break;
+				}
+				default: break;
+			}
+			res.send({ gameCreated: gameCreated });
+		}
+	});
     
 })
 app.listen(8080,function(err){

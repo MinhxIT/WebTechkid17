@@ -36,7 +36,11 @@ UserApi.get('/:userId',(req,res)=>{
 // create
 UserApi.post("/",(req,res)=>{
     const {username,password,avatar} = req.body;
-    const newUser = {username,password,avatar};
+    const newUser = {
+        username,
+        password,
+        avatar
+    };
     UserModel.create(newUser)
     .then((userCreated)=>{
         res.send({data:userCreated});
@@ -49,6 +53,7 @@ UserApi.post("/",(req,res)=>{
 UserApi.put("/:userId",(req,res)=>{
     const {userId} = req.params;
     const {password,avatar} = req.body;
+    
     UserModel.findById(userId)
     .then((userFound)=>{
         if(!userFound) res.send({error: "User not exist"})

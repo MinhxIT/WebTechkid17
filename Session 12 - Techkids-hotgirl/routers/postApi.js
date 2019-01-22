@@ -7,7 +7,23 @@ postApi.use((req,res,next)=>{
 })
 // get all data
 postApi.get("/",(req,res)=>{
+    const {page=1,per_page=5} = req.query;
     PostModel.find({})
+    .populate(
+        'author',
+        {
+            _id:0,
+            password:0,
+            __v:0
+        },
+    )
+    .populate('comments.author',{
+        _id:0,
+        password:0,
+        __v:0
+    })
+    .skip((page-1)*per_page)
+    .limit(Number(per_page))
     .then((posts)=>{
         res.send({data:posts})
     })
@@ -28,10 +44,10 @@ postApi.get("/:idPost",(req,res)=>{
 }) ;
 // post data 
 postApi.post("/",(req,res)=>{
-    const {picture,desciption,like,title,comment,views,date,author} = req.body; // get form input 
-    const newPost = {picture,desciption,like,title,comment,views,date,author};
+    const {picture,description,like,title,comments,views,date,author} = req.body; // get form input 
+    const newPost = {picture,description,like,title,comments,views,date,author};
     PostModel.create(newPost)
-    .then((post)=>{
+    .then((postCreated)=>{
         res.send({data:postCreated});
     })
     .catch((error)=>{
