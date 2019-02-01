@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="content" style="display: none">Welcome to, <span id="username"></span></p>
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/api/auth"
+        }).then((data)=>{
+            if(data && data.username){
+                $("#content").css("display", "block");
+                $("#username").text(data.username);
+            }
+        }).catch((error)=>{
+            window.location.href="/login";
+        })
+    </script>
+</body>
+</html>

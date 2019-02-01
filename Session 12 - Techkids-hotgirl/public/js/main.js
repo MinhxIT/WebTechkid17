@@ -14,7 +14,6 @@
                 check=false;
             }
         }
-
         return check;
     });
 
@@ -53,22 +52,17 @@
     $(".login100-form").on('submit',function (e) {
         var username = $(".username").val();
         var password = $(".password").val(); 
-        e.preventDefault();
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/api/auth/login",
-            data:{username,password},
-            success: function (data) {
-                console.log(data);
-                if(data.userFound){
-                    $(".login-fail").text("Login success");
-                }else if(data.userPassFail){
-                    $(".login-fail").text("Login Faild");
-                }else{
-                    $(".login-fail").text("User not exist");
-                }
-                
-            }
+            data:{username,password}
+        }).then((data) => {
+            $(".message").css("color","green");
+            $(".message").text(data);
+            window.location.href("/");
+        }).catch((error) => {
+            $(".message").css("color","red");
+            $(".message").text(error.responseJSON.error);
         });
     });
     
