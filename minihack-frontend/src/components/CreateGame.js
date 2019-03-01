@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { ROOT_API } from './../url';
 export default class CreateGame extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             players:[]
         }
@@ -14,7 +14,7 @@ export default class CreateGame extends Component {
         event.preventDefault();
         const players = this.state.players;
         axios({
-            url:"http://10.10.0.248:6969/api/game",
+            url:`${ROOT_API}/api/game`,
             method:"POST",
             data:{
                 players,
@@ -22,7 +22,10 @@ export default class CreateGame extends Component {
             }
         })
         .then((data)=>{
-            console.log(data);
+            const {game} = data.data;
+            if(game && game._id){
+            window.location.href = "/game/"+game._id;
+        }
         })
         .catch((error)=>{
             console.log(error);
